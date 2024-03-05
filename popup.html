@@ -1,0 +1,347 @@
+<html lang="en" style="width: fit-content;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Document</title>
+
+  <body
+    style="
+      margin: 10px;
+      background-color: #04498e;
+      color: aliceblue;
+      border-radius: 20px;
+      width: fit-content;
+    "
+  >
+  <style>
+    button {
+      color: #1775b5;
+      background-color: #f0f8ff;
+      border: 0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: all 0.1s ease-in-out;
+    }
+    button:hover {
+      background-color:  #c2d0db;
+    }
+    button:active {
+      background-color: #084f7e;
+      color: #f0f8ff;
+    }
+
+    .toggle {
+
+            background-color: rgb(29, 155, 240);
+      color: #f0f8ff;
+      border: 0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: all 0.1s ease-in-out;
+    }
+    .toggle:hover {
+      background-color:  #c2d0db;
+    }
+    .toggle:active {
+      background-color: #084f7e;
+      color: #f0f8ff;
+    }
+    .toggle.focused  {
+      
+      color: rgb(29, 155, 240);
+      background-color: #f0f8ff;
+    }
+    input::placeholder {
+      color: rgba(240, 248, 255, 0.465);
+    }
+
+    </style>
+    <div style="margin: 0 6px;">
+        <div style="margin-bottom: 1rem ;width: 100%; text-align: center; display: flex; align-items: center; gap: 6px; justify-content: center; ">
+                             <span><svg viewBox="0 0 24 24"  style="color: rgb(255, 255, 255); fill: #ffffff;width: 30px;"><g><path d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"></path></g></svg></span>
+
+            <h2>
+                  <span>ReplyMore</span>
+                </h2>
+        </div>
+        <div class="container" style="width: 14rem;">
+          <div class="categories" style="border-radius: 20px; width: fit-content;  display: flex ;   overflow: hidden;      border: 0.1rem solid;
+            border-color: aliceblue;margin: 1rem auto;">
+          <button class="category toggle focused"  id="track" style="border-radius: 0;text-align: center;margin: 0 ;padding:  0.2rem 0.7rem;   
+  ">Track</button>
+          <button class="category toggle"  id="filter" style="display: none; border-radius: 0;text-align: center;margin: 0 ;padding:  0.2rem 0.7rem;  ; " >Filter</button>
+          </div>
+          <div class="track-container"  >
+      <div style="margin-bottom: 12px;margin-top: 12px; display: flex; gap: 2px; height: 30px; align-items: center; justify-content: space-between;">
+      <h2 style="margin-right: 6px; text-wrap: nowrap;"> Daily goal </h2> 
+      <div           style="
+            height: 100%;
+            display: flex;
+            gap: 0.2rem;
+            background-color: aliceblue;
+            color: #1775b5;
+            border: 0.1rem solid;
+            border-color: aliceblue;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            align-items: center;
+          ">
+        <input
+          type="number"
+          id="daily-goal"
+          placeholder="0"
+          style="
+            height: 100%;
+            width: 3rem;
+            background-color: #1775b5;
+            color: aliceblue;
+            border: 0;
+            padding: 2px 4px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+
+          "
+        />
+                <!-- <button
+          id="save"
+     
+        >
+          Save
+        </button> -->
+        <p style="padding-right: 0.2rem;text-wrap: nowrap;"> per day</p>
+        </div>
+      </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+<h2 style="margin-bottom: 0;">Stats</h2>
+<p style="margin-bottom: 0;">Shown</p>
+</div>
+      <div style="display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin: 0.2rem 0;">Today's count : <span id="today-count">0</span>  </p>
+                        <input type="checkbox" id="show-today-count">
+              </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin:0.2rem 0;"> Today's time : <span id="today-time">0</span> m </p>
+                        <input type="checkbox" id="show-today-time">
+              </div> 
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin:0.2rem 0;"> Today's rate : <span id="today-rate">0</span> r/h </p>
+                        <input type="checkbox" id="show-today-rate">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p style="margin: 0.2rem 0;">Total count : <span id="overall-count">0</span>  </p>
+                <input type="checkbox" id="show-overall-count">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin:0.2rem 0;"> Average count : <span id="daily-average">0</span>  </p>
+                        <input type="checkbox" id="show-daily-average">
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin:0.2rem 0;"> Average time : <span id="average-time">0</span> m </p>
+                        <input type="checkbox" id="show-average-time">
+              </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin:0.2rem 0;"> Average rate : <span id="time-per-tweet">0</span> r/h  </p>
+                        <input type="checkbox" id="show-time-per-tweet">
+              </div>
+
+     
+    </div>
+        <div
+        id="status"
+        style="
+          margin-top: 6px;
+          width: 100%;
+          display: flex;
+          gap: 8px;
+          
+          align-items: center;
+          justify-content: end;
+
+        "
+      >
+
+
+
+
+        <button id="reset" style="height: fit-content;">Reset stats</button>
+ 
+      </div>
+      </div>
+      <div class="filter-container" style="display: none;" >
+      <h2  style="margin-bottom: 0.25rem;"> Filter posts  <span>  <input type="checkbox" id="activate-filter-posts"></span>  </h2> 
+                          
+
+            <div class="post-filter" style=" margin-bottom: 12px; display: flex; gap: 2px; height: 30px; align-items: center; justify-content: space-between;">
+      <h3 style="margin-right: 6px; text-wrap: nowrap;"> Max post age : </h3> 
+      <div           style="
+            height: 100%;
+            display: flex;
+            gap: 0.2rem;
+            background-color: aliceblue;
+            color: #1775b5;
+            border: 0.1rem solid;
+            border-color: aliceblue;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            align-items: center;
+          ">
+        <input
+          type="number"
+          id="max-time"
+          placeholder="0"
+          style="
+            height: 100%;
+            width: 3rem;
+            background-color: #1775b5;
+            color: aliceblue;
+            border: 0;
+            padding: 2px 4px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+
+          "
+        />
+                <!-- <button
+          id="save"
+     
+        >
+          Save
+        </button> -->
+        <p style="padding-right: 0.2rem;text-wrap: nowrap;"> hours</p>
+        </div>
+      </div>
+            <div class="post-filter" style="margin-bottom: 12px; display: flex; gap: 2px; height: 30px; align-items: center; justify-content: space-between;">
+      <h3 style="margin-right: 6px; text-wrap: nowrap;"> Min reach : </h3> 
+      <div           style="
+            height: 100%;
+            display: flex;
+            gap: 0.2rem;
+            background-color: aliceblue;
+            color: #1775b5;
+            border: 0.1rem solid;
+            border-color: aliceblue;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            align-items: center;
+          ">
+        <input
+          type="number"
+          id="min-reach"
+          placeholder="0"
+          style="
+            height: 100%;
+            width: 3rem;
+            background-color: #1775b5;
+            color: aliceblue;
+            border: 0;
+            padding: 2px 4px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+
+          "
+        />
+                <!-- <button
+          id="save"
+     
+        >
+          Save
+        </button> -->
+        <p style="padding-right: 0.2rem;text-wrap: nowrap;"> view / min</p>
+        </div>
+      </div>
+                  <div class="post-filter" style="margin-bottom: 12px; display: flex; gap: 2px; height: 30px; align-items: center; justify-content: space-between;">
+      <h3 style="margin-right: 6px; text-wrap: nowrap;"> Max replies : </h3> 
+      <div           style="
+            height: 100%;
+            display: flex;
+            gap: 0.2rem;
+            background-color: aliceblue;
+            color: #1775b5;
+            border: 0.1rem solid;
+            border-color: aliceblue;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            align-items: center;
+          ">
+        <input
+          type="number"
+          id="max-replies"
+          placeholder="0"
+          style="
+            height: 100%;
+            width: 3rem;
+            background-color: #1775b5;
+            color: aliceblue;
+            border: 0;
+            padding: 2px 4px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+
+          "
+        />
+                <!-- <button
+          id="save"
+     
+        >
+          Save
+        </button> -->
+        <p style="padding-right: 0.2rem;text-wrap: nowrap;"> replies</p>
+        </div>
+      </div>
+  <div>
+    <h2 style="margin-bottom: 0;">Settings</h2>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p style="margin: 0.2rem 0;"> hide liked posts </p> 
+                              <input type="checkbox" id="hide-liked">
+
+      </div>
+      
+       <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p style="margin: 0.2rem 0;"> hide views/min </p> 
+                              <input type="checkbox" id="hide-views-per-min">
+
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p style="margin: 0.2rem 0;"> disable reply sound </p> 
+                              <input type="checkbox" id="disable-reply-sound">
+
+      </div>
+      </div>
+      </div>
+    
+
+      <!-- <div style="width: 100%;">
+      <h3> Features to come :</h3>
+      <ul>
+        <li>Settings</li>
+        <li>Better stats</li>
+      </ul>
+</div> -->
+</div>
+      <div
+        id="status"
+        style="
+        padding-bottom: 6px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+  margin-top: 20px;
+        "
+      >
+        <a
+          href="https://twitter.com/Samyrahim7"
+          target="_blank"
+          style="text-align: center; color: aliceblue"
+          >Got feedback ?</a
+        >
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

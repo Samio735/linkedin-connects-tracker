@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Linked connects tracker",
+  "description": "Linkeds connects tracker track how many connects you've sent daily to get the most of the 200 connects limit.",
+  "version": "0.0.1",
+  "permissions": ["storage"],
+  "web_accessible_resources": [
+    {
+      "resources": ["Ding.mp3"],
+      "matches": ["https://twitter.com/*"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "runAt": "document_end",
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
