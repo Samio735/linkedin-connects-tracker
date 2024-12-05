@@ -108,9 +108,10 @@ function createProgressBar() {
 function updateStatsElement() {
   chrome.storage.sync.get(["postCount", "countDays", "todayCount"], (data) => {
     const statsElement = document.getElementById("post-stats");
-    const dailyAverage = (data.postCount / data.countDays).toFixed(2);
-
-    statsElement.innerHTML = ` Today : ${data.todayCount}/${dailyGoal} `;
+    data.postCount = data.postCount || 0;
+    statsElement.innerHTML = `<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="connect-small" aria-hidden="true" role="none" data-supported-dps="16x16" fill="#ffffff" fill-opacity="0.9" width="16"  height="16" >
+  <path d="M9 4a3 3 0 11-3-3 3 3 0 013 3zM6.75 8h-1.5A2.25 2.25 0 003 10.25V15h6v-4.75A2.25 2.25 0 006.75 8zM13 8V6h-1v2h-2v1h2v2h1V9h2V8z" fill-opacity="0.9"></path>
+</svg>This week : ${data.postCount} / ${GOAL} `;
   });
 }
 
@@ -124,10 +125,6 @@ function updateProgressBar() {
     if (progress > 100) progress = 100;
     progressBar.style.width = `${progress}%`;
   });
-}
-
-async function requestPlaySound() {
-  const response = await chrome.runtime.sendMessage({ action: "playAudio" });
 }
 
 // Add event listener for detecting comment or post activity
@@ -191,12 +188,6 @@ chrome.storage.sync.get("postCount", (data) => {
 //   }, 100);
 // }, 200);
 
-const audio = new Audio(chrome.runtime.getURL("Ding.mp3"));
-
-// Function to play the audio
-function playAudio() {
-  audio.play();
-}
 // reset count
 
 // update stats and post count on storage change
